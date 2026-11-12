@@ -33,6 +33,7 @@ private:
     QPushButton *Tableau[9];
     void joue(int n, QString coche);
     bool caseVide (int n);
-
+    int coups=0;
+    void ordi();
 };
 #endif // MAINWINDOW_H

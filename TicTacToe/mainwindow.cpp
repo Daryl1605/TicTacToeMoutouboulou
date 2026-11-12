@@ -1,11 +1,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include<QRandomGenerator>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
     Tableau[1]=ui->Case_1_1;
     Tableau[2]=ui->Case_1_2;
     Tableau[3]=ui->Case_1_3;
@@ -32,7 +34,24 @@ bool MainWindow::caseVide(int n){
 }
 void MainWindow::joue(int n, QString coche) {
     Tableau[n]->setText(coche);
+    coups = coups++;
+    if ( coche =="X"){
+        ordi();
+    }
 }
+//on fait jouer l'ordi
+void MainWindow::ordi(){
+    int n;
+    do{
+        n = QRandomGenerator::global()->bounded(1,10);
+    } while (Tableau[n]->text()=="X");
+
+
+    joue(n,"O");
+
+}
+
+
 //action sur les boutons
 void MainWindow::on_Case_1_1_released()
 
@@ -43,7 +62,7 @@ void MainWindow::on_Case_1_1_released()
 void MainWindow::on_Case_1_2_released()
 
 {
-    joue(2,"O");
+    joue(2,"X");
 
 }
 void MainWindow::on_Case_1_3_released()
@@ -55,7 +74,7 @@ void MainWindow::on_Case_1_3_released()
 void MainWindow::on_Case_2_1_released()
 
 {
-    joue(4,"0");
+    joue(4,"X");
 
 }
 void MainWindow::on_Case_2_2_released()
@@ -67,7 +86,7 @@ void MainWindow::on_Case_2_2_released()
 void MainWindow::on_Case_2_3_released()
 
 {
-    joue(6,"0");
+    joue(6,"X");
 
 }
 void MainWindow::on_Case_3_1_released()
@@ -79,7 +98,7 @@ void MainWindow::on_Case_3_1_released()
 void MainWindow::on_Case_3_2_released()
 
 {
-    joue(8,"O");
+    joue(8,"X");
 
 }void MainWindow::on_Case_3_3_released()
 
